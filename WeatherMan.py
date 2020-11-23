@@ -2,8 +2,13 @@ import f_opt
 
 from discord.ext import commands
 import discord
+import asyncio
 
 client = commands.Bot(command_prefix="WMAN")
+
+@client.command()
+async def current_weather (ctx):
+    pass
 
 def run(ID,mode):
     client.run(ID,bot=mode)

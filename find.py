@@ -1,6 +1,9 @@
 import requests
 from bs4 import BeautifulSoup
 import re
+from geopy import Nominatim
+
+geolocator = Nominatim(user_agent="gsll")
 
 header = {
     'User-Agent':'user-agent: Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/83.0.4103.97 Safari/537.36',
@@ -23,3 +26,7 @@ def currentWeather():
     cur1 = weather_dat.find("div",{"class":"CurrentConditions--primary--3xWnK"})
     cur2 = weather_dat.find("div",{"class":"CurrentConditions--secondary--2XNLR"})
     return [tls,cur1.text,cur2.text]
+
+def gsll(location):
+    location = geolocator.geocode(str(location))
+    print(location.latitude,location.longitude)

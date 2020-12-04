@@ -12,7 +12,12 @@ async def current (ctx):
     msg = await ctx.send("Searching")
     data = find.currentWeather()
     await msg.edit(content=str(f"{data[0]}\n{data[1]}\n{data[2]}"))
-   
+
+@client.command()
+async def search(ctx,location:str):
+    msg = await ctx.send("Searching")
+    data = find.searchWeather(location)
+    await msg.edit(content=str(f"{data[0]}\n{data[1]}\n{data[2]}"))
 
 def run(ID,mode):
     client.run(ID,bot=mode)

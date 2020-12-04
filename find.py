@@ -27,7 +27,7 @@ def currentWeather():
     cur2 = weather_dat.find("div",{"class":"CurrentConditions--secondary--2XNLR"})
     return [tls,cur1.text,cur2.text]
 
-def search(location):
+def searchWeather(location):
     loc_ll = gsll(location)
     loc_ll = f"{loc_ll[0]},{loc_ll[1]}"
     Req = requests.get("https://weather.com/en-NZ/weather/today/l/"+loc_ll,headers=header)

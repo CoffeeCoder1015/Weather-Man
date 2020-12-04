@@ -19,6 +19,11 @@ async def search(ctx,location:str):
     data = find.searchWeather(location)
     await msg.edit(content=str(f"{data[0]}\n{data[1]}\n{data[2]}"))
 
+@search.error
+async def search_err(ctx,err):
+    if isinstance(err,commands.MissingRequiredArgument):
+        await ctx.send("please specify location.")
+
 def run(ID,mode):
     client.run(ID,bot=mode)
 

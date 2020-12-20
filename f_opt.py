@@ -6,7 +6,14 @@ class f_opt:
         self.cArgs = checkArgs
         self.check()
 
+    def Bool(self,b):
+        #the special function to deal with bool("False") == True
+        return bool(int(b.replace("False","0").replace("True","1")))
+
     def check(self):
+        #use special Bool func if bool is used
+        for i in self.cArgs.items():
+            self.cArgs[i[0]]=([i if i != bool else self.Bool for i in i[1][0]],i[1][1])
         # check if args are supplied
         pos = []
         reqDist = []
